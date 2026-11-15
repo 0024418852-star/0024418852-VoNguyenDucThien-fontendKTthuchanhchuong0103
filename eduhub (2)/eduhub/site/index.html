@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="EduHub: tìm và đăng ký các sự kiện của câu lạc bộ sinh viên.">
+  <title>EduHub — Sự kiện sắp diễn ra</title>
+  <link rel="icon" href="img/event.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <a class="logo" href="index.html">EduHub</a>
+    <nav aria-label="Menu chính">
+      <ul>
+        <li><a href="index.html" aria-current="page">Sự kiện</a></li>
+        <li><a href="my-registrations.html">Đăng ký của tôi</a></li>
+        <li id="auth-slot"></li>
+      </ul>
+    </nav>
+  </header>
+  <main>
+    <h1>Sự kiện sắp diễn ra</h1>
+    <form id="search-form" class="search-form" role="search">
+      <label for="keyword">Tìm sự kiện</label>
+      <input type="search" id="keyword" name="keyword" placeholder="Tìm sự kiện..." autocomplete="off">
+      <label for="club-filter" class="visually-hidden">Lọc theo câu lạc bộ</label>
+      <select id="club-filter" name="club">
+        <option value="">Tất cả câu lạc bộ</option>
+      </select>
+      <button type="submit" class="btn btn-primary">Tìm</button>
+    </form>
+    <p id="status" class="status" role="status" aria-live="polite"></p>
+    <div id="event-list" class="event-list"></div>
+  </main>
+  <footer class="site-footer">
+    <p>&copy; 2026 EduHub</p>
+  </footer>
+  <script src="js/app.js"></script>
+  <script src="js/events.js"></script>
+</body>
+</html>

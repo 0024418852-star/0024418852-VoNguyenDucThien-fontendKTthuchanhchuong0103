@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Quản trị sự kiện, câu lạc bộ, đăng ký và check-in của EduHub.">
+  <title>Quản trị — EduHub</title>
+  <link rel="icon" href="img/event.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <a class="logo" href="index.html">EduHub</a>
+    <nav aria-label="Menu chính">
+      <ul>
+        <li><a href="index.html">Sự kiện</a></li>
+        <li><a href="my-registrations.html">Đăng ký của tôi</a></li>
+        <li id="auth-slot"></li>
+      </ul>
+    </nav>
+  </header>
+  <main>
+    <h1>Quản trị</h1>
+    <p id="status" class="status" role="status" aria-live="polite"></p>
+
+    <div id="admin-content" hidden>
+      <div class="tabs" role="group" aria-label="Chức năng quản trị">
+        <button type="button" class="tab" data-tab="events">Sự kiện</button>
+        <button type="button" class="tab" data-tab="clubs">Câu lạc bộ</button>
+        <button type="button" class="tab" data-tab="registrations">Đăng ký</button>
+        <button type="button" class="tab" data-tab="checkin">Check-in</button>
+      </div>
+
+      <section id="tab-events" class="panel" aria-labelledby="event-form-title">
+        <h2 id="event-form-title">Thêm sự kiện</h2>
+        <form id="event-form" class="form admin-form">
+          <input type="hidden" name="eventId">
+          <label for="event-name">Tên sự kiện</label>
+          <input type="text" id="event-name" name="name" required maxlength="200">
+          <label for="event-club">Câu lạc bộ</label>
+          <select id="event-club" name="clubId" required></select>
+          <label for="event-location">Địa điểm</label>
+          <input type="text" id="event-location" name="location" required>
+          <label for="event-start">Thời gian bắt đầu (giờ Việt Nam)</label>
+          <input type="datetime-local" id="event-start" name="startTime" required>
+          <label for="event-capacity">Sức chứa</label>
+          <input type="number" id="event-capacity" name="capacity" required min="1" step="1">
+          <label for="event-description">Mô tả</label>
+          <textarea id="event-description" name="description" rows="4"></textarea>
+          <div class="actions">
+            <button type="submit" class="btn btn-primary">Lưu sự kiện</button>
+            <button type="button" id="event-cancel" class="btn btn-secondary" hidden>Huỷ sửa</button>
+          </div>
+        </form>
+        <h2>Danh sách sự kiện</h2>
+        <ul id="admin-event-list" class="admin-list"></ul>
+      </section>
+
+      <section id="tab-clubs" class="panel" aria-labelledby="club-form-title" hidden>
+        <h2 id="club-form-title">Thêm câu lạc bộ</h2>
+        <form id="club-form" class="form admin-form">
+          <input type="hidden" name="clubId">
+          <label for="club-name">Tên câu lạc bộ</label>
+          <input type="text" id="club-name" name="name" required maxlength="200">
+          <label for="club-description">Mô tả</label>
+          <textarea id="club-description" name="description" rows="3"></textarea>
+          <div class="actions">
+            <button type="submit" class="btn btn-primary">Lưu câu lạc bộ</button>
+            <button type="button" id="club-cancel" class="btn btn-secondary" hidden>Huỷ sửa</button>
+          </div>
+        </form>
+        <h2>Danh sách câu lạc bộ</h2>
+        <ul id="admin-club-list" class="admin-list"></ul>
+      </section>
+
+      <section id="tab-registrations" class="panel" aria-labelledby="reg-title" hidden>
+        <h2 id="reg-title">Đăng ký theo sự kiện</h2>
+        <label for="reg-event" class="visually-hidden">Chọn sự kiện</label>
+        <select id="reg-event" class="wide-select"></select>
+        <ul id="admin-registration-list" class="admin-list"></ul>
+      </section>
+
+      <section id="tab-checkin" class="panel" aria-labelledby="checkin-title" hidden>
+        <h2 id="checkin-title">Xác thực mã check-in</h2>
+        <form id="checkin-form" class="form admin-form">
+          <label for="qr-token">Mã check-in</label>
+          <input type="text" id="qr-token" name="qrToken" required autocomplete="off">
+          <button type="submit" class="btn btn-primary">Xác thực</button>
+        </form>
+      </section>
+    </div>
+  </main>
+  <footer class="site-footer">
+    <p>&copy; 2026 EduHub</p>
+  </footer>
+  <script src="js/app.js"></script>
+  <script src="js/admin.js"></script>
+</body>
+</html>
